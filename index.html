@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>Daily, Monthly, Weekly</title>
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url() ?>ui/images/favicon.png">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/main.min.css" rel="stylesheet" />
+
+</head>
+
+    <div class="page-wrapper">
+      <div class="row">
+        <div class="col-sm-10 col-12">
+            <div class="form-inline clearfix">
+                <div class="report-dateinput">
+                    <div class="reportrange">
+                        <input id="reportrange" class="form-control mb-3 ml-1 input-limit-datepicker" type="text" name="daterange" value="">
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <link href="daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <script src="daterangepicker/daterangepicker.js"></script>
+    <script>
+    var start = moment().subtract(29, 'days');
+    var end = moment();
+
+    $('#reportrange').daterangepicker({
+        locale: {
+            format: 'DD-MM-YYYY'
+        },
+        minDate: '01/12/2019',
+        dateLimit: {
+            months: 2
+        },
+        startDate: start,
+        endDate: end,
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, );
+    </script>
+</body>
+</html>
